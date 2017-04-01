@@ -1,0 +1,137 @@
+@font-face{
+	font-family:web-pro-h;
+	src:url(../font/web-pro-h)format("woff2"),
+			url(../font/web-pro-h) format("woff"),
+			url(../font/web-pro-h) format("opentype");
+			font-weight:300;
+			font-style:normal;
+}
+
+$base03:    #002b36;
+$base02:    #073642;
+$base01:    #586e75;
+$base00:    #657b83;
+$base0:     #839496;
+$base1:     #93a1a1;
+$base2:     #eee8d5;
+$base3:     #fdf6e3;
+$yellow:    #b58900;
+$orange:    #cb4b16;
+$red:       #dc322f;
+$magenta:   #d33682;
+$violet:    #6c71c4;
+$blue:      #268bd2;
+$cyan:      #2aa198;
+$green:     #859900;
+$codeColor: #1f83a0;
+$baseFont:  "Helvetica Neue", Helvetica, Arial, sans-serif;
+$codeFont:  DejaVu Sans Mono,Consolas, 'Liberation Mono', Menlo, Courier, monospace;
+$headerFont: "web-pro-h", "Open Sans";
+
+::selection {
+  background-color: $magenta;
+  background-color: #f75aa6;
+  color: #eee;
+  text-shadow: none;
+}
+
+body {
+  padding: 25px 36px;
+  font-family: "Helvetica Neue", Arial, sans-serif;
+  background-color: $base3;
+  color: $base00;
+
+  @media (max-width: 767px) {
+    padding: 25px 10px;
+  }
+}
+a, a:active, a:visited {
+  color: $yellow;
+}
+a:hover {
+  background: $base3;
+}
+
+h1 {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  text-transform: capitalize;
+  color: $red;
+
+  @media (max-width: 767px) {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+h1 a {
+  text-decoration: none;
+  color: $blue;
+
+  & + a {
+    margin-left: 15px;
+  }
+}
+
+strong {
+  font-weight: bold;
+}
+
+.card-container {
+  columns: 3;
+  column-gap: 20px;
+
+  @media (min-width: 768px) and (max-width: 991px){
+    columns: 2;
+  }
+
+  @media (max-width: 767px) {
+    columns: 1;
+  }
+
+  .h2-block {
+    display: block;
+    padding: 10px;
+    margin: 5px 0;
+    width: 100%;
+    background-color: $base2;
+    break-inside: avoid;
+    break-after: always;
+    break-before: always;
+    float: left;
+    box-sizing: border-box;
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.12), 0 1px 2px 0 rgba(0, 0, 0, 0.24);
+
+    h2 {
+      color: $yellow;
+      font-family: $headerFont;
+      text-transform: capitalize;
+    }
+    p {
+      margin: 0;
+      color: $codeColor;
+    }
+
+    code {
+      background: $base3;
+    }
+
+    pre {
+      margin-left: 2em;
+
+      code {
+        white-space: pre-wrap;
+        word-wrap: break-word;
+        font-family: $codeFont;
+        background: inherit;
+        font-size: 14px;
+      }
+    }
+
+  }
+}
+
+/*break-after: 不管上一列有没有填满，我都另起一列
+break-before: 不管上一列有没有填满，我都另起一列*/
+
