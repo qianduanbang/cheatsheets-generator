@@ -6,6 +6,8 @@ var pug = require('pug');
 var gutil = require('gulp-util');
 var PluginError = gutil.PluginError;
 var util = require('./util');
+var shell = require('shelljs');
+var fs = require('fs');
 
 // 常量
 const PLUGIN_NAME = 'gulp-pug-marked';
@@ -24,7 +26,16 @@ function gulpPugMarked(options) {
     throw new PluginError(PLUGIN_NAME, 'Missing pug template!');
   }
 
-  var opts = _.merge( defaultOptions, options);
+  var opts = _.merge(defaultOptions, options);
+
+  if (opts.record) {
+    var records = {};
+    util.touchFile(opts.record);
+    try {
+      var _records = require(opts.record);
+      Object.assign(records, _records);
+    } catch (err) {};
+  }
 
   // 创建一个 stream 通道，以让每个文件通过
   // 返回文件 stream
@@ -57,7 +68,7 @@ function gulpPugMarked(options) {
         opts.marked.renderer = renderer;
       }
 
-      marked(file.contents.toString(), opts.marked, function (err, markedHtml) {
+      marked(file.contents.toString(), opts.marked, function(err, markedHtml) {
         // 恢复从插件外传进来的渲染方法
         if (opts.marked.__renderer) {
           for (var key in util.generator) {
@@ -65,7 +76,9 @@ function gulpPugMarked(options) {
           }
         }
         if (err) {
-          cb(new gutil.PluginError(PLUGIN_NAME, err, {fileName: file.path}));
+          cb(new gutil.PluginError(PLUGIN_NAME, err, {
+            fileName: file.path
+          }));
           return;
         }
 
@@ -73,6 +86,10 @@ function gulpPugMarked(options) {
 
         opts.pug[opts.pug.renderField] = markedHtml;
         opts.pug.title = opts.pug.title || path.basename(file.path, '.md');
+        if (opts.record && records[opts.pug.title] === undefined) {
+          records[opts.pug.title] = opts.pug.description || '';
+          fs.writeFileSync(opts.record, JSON.stringify(records, null, ' '));
+        }
         try {
           var html = pug.renderFile(opts.pugTemplate, opts.pug);
           opts.pug.title = '';

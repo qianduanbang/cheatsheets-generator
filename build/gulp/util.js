@@ -1,3 +1,7 @@
+var shell = require('shelljs');
+var fs = require('fs');
+var path = require('path');
+
 var trailingBlockHeading = (hArr, level, html) => {
   html = html || '';
   while (hArr.length > 0) {
@@ -44,7 +48,21 @@ var paragraphGenerator = (opts, paragraph) => {
   }
 }
 
+var touchFile = (filepath) => {
+  if(!fs.existsSync(filepath)) {
+    shell.mkdir('-p', path.dirname(filepath));
+    shell.touch(filepath);
+  }
+}
+
+var isDirectory = (filepath) => {
+  if(!fs.existsSync(filepath)) return false;
+  return fs.statSync(filepath)
+}
+
 module.exports = {
+  touchFile: touchFile,
+  isDirectory: isDirectory,
 	trailingBlockHeading: trailingBlockHeading,
 	generator: {
 		heading: blockHeadingGenerator,

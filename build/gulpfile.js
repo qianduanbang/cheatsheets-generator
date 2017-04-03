@@ -66,6 +66,7 @@ gulp.task('markdown', ['style'], () => {
   return gulp.src(globs.md)
     .pipe(pugMarked({
       pugTemplate: paths.src + '/template/sheet-template.pug',
+      record: paths.distAssets + '/js/cheat-record.json',
       pug: {
         renderField: 'htmlContent',
         pretty: true,
