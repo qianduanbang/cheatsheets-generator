@@ -26,7 +26,7 @@ var reload = browserSync.reload;
 
 var paths = {
   root: path.resolve(__dirname, '..'),
-  src: path.resolve(__dirname, '../src'),
+  src: path.resolve(__dirname, '../src/cheat'),
   dist: path.resolve(__dirname, '../dist')
 };
 
