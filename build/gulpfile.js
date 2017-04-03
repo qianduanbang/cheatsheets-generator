@@ -1,5 +1,7 @@
 const gulp = require('gulp');
 const path = require('path');
+const execsync = require('child_process').execSync;
+const exec = require('child_process').exec;
 // deal css
 const postcss = require('gulp-postcss');
 const precss = require('precss');
@@ -30,12 +32,14 @@ var paths = {
   dist: path.resolve(__dirname, '../dist')
 };
 
+paths.srcIndex = path.resolve(paths.src, '../index');
 paths.srcAssets = paths.src + '/static';
 paths.distAssets = paths.dist + '/static';
 paths.manifest = paths.distAssets + '/manifest.json';
 var globs = {
   font: paths.srcAssets + '/font/**/*',
   md: paths.root + '/sheets-md/**/*.md',
+  srcIndex: paths.srcIndex + '/**/*',
   scss: paths.srcAssets + '/**/*.scss',
   pug: paths.src + '/template/**/*.pug'
 };
@@ -63,6 +67,17 @@ gulp.task('style', ['font'], () => {
 
 })
 
+gulp.task('index', (cb) => {
+  exec('npm run build-index', { cwd: paths.root }, (err) => {
+    if (err) return cb(err); // 返回 error
+    cb(); // 完成 task
+  })
+})
+
+gulp.task('index-reload', ['index'], () => {
+  reload()
+})
+
 gulp.task('markdown', ['style'], () => {
   return gulp.src(globs.md)
     .pipe(pugMarked({
@@ -86,12 +101,22 @@ gulp.task('markdown', ['style'], () => {
 gulp.task('markdown-reload', ['markdown'], () => {
   reload()
 })
+
 gulp.task('dev', ['markdown'], () => {
   browserSync({
     server: {
       baseDir: paths.dist
     }
   });
-  gulp.watch([globs.md, globs.scss, globs.pug], ['markdown-reload'])
+  gulp.watch([globs.md, globs.scss, globs.pug], ['markdown-reload']);
+  gulp.watch([globs.srcIndex], ['index-reload']);
 })
-gulp.task('default', ['markdown']);
+
+gulp.task('build', ['index', 'markdown']);
+gulp.task('preview', ['build'], () => {
+  browserSync({
+    server: {
+      baseDir: paths.dist
+    }})
+});
+gulp.task('default', ['index', 'markdown']);
