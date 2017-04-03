@@ -25,6 +25,7 @@ var browserSync = require('browser-sync');
 var reload = browserSync.reload;
 
 var paths = {
+  root: path.resolve(__dirname, '..'),
   src: path.resolve(__dirname, '../src'),
   dist: path.resolve(__dirname, '../dist')
 };
@@ -34,7 +35,7 @@ paths.distAssets = paths.dist + '/static';
 paths.manifest = paths.distAssets + '/manifest.json';
 var globs = {
   font: paths.srcAssets + '/font/**/*',
-  md: paths.src + '/sheets-md/**/*.md',
+  md: paths.root + '/sheets-md/**/*.md',
   scss: paths.srcAssets + '/**/*.scss',
   pug: paths.src + '/template/**/*.pug'
 };
