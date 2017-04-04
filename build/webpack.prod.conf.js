@@ -28,12 +28,6 @@ var webpackConfig = merge(baseWebpackConfig, {
     new webpack.DefinePlugin({
       'process.env': env
     }),
-    new webpack.optimize.UglifyJsPlugin({
-      compress: {
-        warnings: false
-      },
-      sourceMap: true
-    }),
     // extract css into its own file
     new ExtractTextPlugin({
       filename: utils.assetsPath('css/[name].[contenthash].css')
@@ -92,6 +86,19 @@ var webpackConfig = merge(baseWebpackConfig, {
     ])
   ]
 })
+
+if (process.env.NODE_ENV == 'production') {
+  webpackConfig.plugins.push(
+      new webpack.optimize.UglifyJsPlugin({
+      compress: {
+        warnings: false
+      },
+      sourceMap: true
+    })
+  )
+} else {
+  webpackConfig.devtool = '#cheap-module-eval-source-map';
+}
 
 if (config.build.productionGzip) {
   var CompressionWebpackPlugin = require('compression-webpack-plugin')

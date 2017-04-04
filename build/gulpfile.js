@@ -98,11 +98,11 @@ gulp.task('markdown', ['style'], () => {
     .pipe(gulp.dest(paths.dist));
 })
 
-gulp.task('markdown-reload', ['markdown'], () => {
+gulp.task('markdown-reload', ['index', 'markdown'], () => {
   reload()
 })
 
-gulp.task('dev', ['markdown'], () => {
+gulp.task('dev', ['index', 'markdown'], () => {
   browserSync({
     server: {
       baseDir: paths.dist
@@ -119,4 +119,4 @@ gulp.task('preview', ['build'], () => {
       baseDir: paths.dist
     }})
 });
-gulp.task('default', ['index', 'markdown']);
+gulp.task('default', ['index-build', 'markdown']);

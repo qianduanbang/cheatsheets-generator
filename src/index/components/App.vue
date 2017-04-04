@@ -20,6 +20,7 @@
 </template>
 
 <script>
+import Vue from 'vue'
 import { mapMutations } from 'vuex'
 import Donate from './Donate.vue'
 import Cmd from './Cmd.vue'
@@ -29,7 +30,7 @@ export default {
   data () {
     return {
       title: 'cheat sheets',
-      cmds: []
+      tempCmds: []
     }
   },
   methods: {
@@ -40,6 +41,30 @@ export default {
       }
       e.target.value = ''
     }
+  },
+  computed: {
+    cmds: {
+      get () {
+        return this.tempCmds || [];
+      },
+      set (cmds) {
+        var _cmds = [];
+        for (var cmd in cmds) {
+          _cmds.push({
+            title: cmd,
+            description: cmds[cmd]
+          })
+        }
+        this.tempCmds = _cmds;
+      }
+    }
+  },
+  mounted () {
+    Vue.http.get('static/js/cheat-record.json').then((data) => {
+      this.cmds = data.data || {};
+    }, (err) => {
+      console.log(err);
+    })
   }
 }
 </script>
