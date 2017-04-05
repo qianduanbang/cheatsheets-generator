@@ -1,5 +1,6 @@
 <template>
   <div class="card" :style="{backgroundColor: bgColor}">
+    <a :href="page" target="_blank"></a>
     {{title}}
   </div>
 </template>
@@ -12,6 +13,11 @@ export default {
     bgColor: {
       type: String,
       default: '#374046'
+    }
+  },
+  computed: {
+    page () {
+      return this.title + '.html'
     }
   }
 }
@@ -42,5 +48,13 @@ export default {
       box-shadow: 0 3px 10px rgba(0, 0, 0, 0.23), 0 3px 10px rgba(0, 0, 0, 0.16);
     }
 
+    a {
+      position: absolute;
+      top: 0;
+      left: 0;
+      background: none;
+      width: 100%;
+      height: 100%;
+    }
   }
 </style>
