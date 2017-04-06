@@ -1,6 +1,6 @@
 <template>
   <div class="card" :style="{backgroundColor: bgColor}">
-    <a :href="page" target="_blank"></a>
+    <a :href="page" target="_blank" title="description"></a>
     {{title}}
   </div>
 </template>
@@ -8,6 +8,7 @@
 <script>
 export default {
   props: {
+    file: '',
     title: '',
     description: '',
     bgColor: {
@@ -17,14 +18,14 @@ export default {
   },
   computed: {
     page () {
-      return this.title + '.html'
+      return this.file + '.html'
     }
   }
 }
 </script>
 
 <style lang="scss">
-  $cardWidth: 150px;
+  $cardWidth: 200px;
   $cardHeight: 150px;
 
 

@@ -51,8 +51,9 @@ export default {
         var _cmds = [];
         for (var cmd in cmds) {
           _cmds.push({
-            title: cmd,
-            description: cmds[cmd]
+            file: cmd,
+            title: cmds[cmd].title,
+            description: cmds[cmd].description
           })
         }
         this.tempCmds = _cmds;

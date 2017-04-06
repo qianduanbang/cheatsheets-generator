@@ -1,6 +1,6 @@
 <template>
 <div class="cmd-wrap">
-  <card v-for="(cmd, index) in cmds" :key="cmd.name" :title="cmd.title" :description="cmd.description" :bgColor="colorsMap[colors[index%colorsLength]]"></card>
+  <card v-for="(cmd, index) in cmds" :key="cmd.name" :file="cmd.file" :title="cmd.title" :description="cmd.description" :bgColor="colorsMap[colors[index%colorsLength]]"></card>
 </div>
 </template>
 

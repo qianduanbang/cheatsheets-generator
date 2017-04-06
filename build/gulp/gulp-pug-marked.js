@@ -85,9 +85,14 @@ function gulpPugMarked(options) {
         if (opts.markedBlockHeading) markedHtml += util.trailingBlockHeading(opts._markedBlockHeadingArr);
 
         opts.pug[opts.pug.renderField] = markedHtml;
+        opts.pug.file = file.path.split(file.base)[1];
+        opts.pug.file = opts.pug.file.substring(0, opts.pug.file.lastIndexOf('.md'));
         opts.pug.title = opts.pug.title || path.basename(file.path, '.md');
         if (opts.record && records[opts.pug.title] === undefined) {
-          records[opts.pug.title] = opts.pug.description || '';
+          records[opts.pug.file] = {
+            title: opts.pug.title,
+            description: opts.pug.description || ''
+          }
           fs.writeFileSync(opts.record, JSON.stringify(records, null, ' '));
         }
         try {
