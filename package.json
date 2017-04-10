@@ -14,10 +14,11 @@
   "config": {
     "md": "../simple-cheatsheets/src",
     "gh-pages": {
-      "git": "/Users/Luo/Documents/git/simple-cheatsheets.git",
+      "git": "git@github.com:MwumLi/simple-cheatsheets.git",
       "message": "cheat sheets updated",
       "user": "MwumLi",
-      "email": "mwumli@hotmail.com"
+      "email": "mwumli@hotmail.com",
+      "cname": "cheatsheets.ifmicro.com"
     }
   },
   "license": "ISC",

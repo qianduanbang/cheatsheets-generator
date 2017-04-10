@@ -8,7 +8,7 @@ build:
 preview:
 	npm run preview
 
-gh-pahes:
+gh-pages:
 	node build/gh-pages.js
 
 clean:
