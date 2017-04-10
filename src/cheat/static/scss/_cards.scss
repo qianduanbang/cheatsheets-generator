@@ -45,6 +45,11 @@ body {
     padding: 25px 10px;
   }
 }
+
+p, blockquote, ul, ol, dl, li, table, pre {
+  margin: 15px 0;
+}
+
 a, a:active, a:visited {
   color: $yellow;
 }
@@ -79,10 +84,14 @@ strong {
 }
 
 .card-container {
-  columns: 3;
+  columns: 4;
   column-gap: 20px;
 
-  @media (min-width: 768px) and (max-width: 991px){
+  @media (min-width: 992px) and (max-width: 1361px) {
+    columns: 3;
+  }
+
+  @media (min-width: 768px) and (max-width: 991px) {
     columns: 2;
   }
 
@@ -129,6 +138,17 @@ strong {
       }
     }
 
+    blockquote {
+      border-left: 4px solid #dddddd;
+      padding: 0 15px;
+      color: #777777;
+      margin: 15px 0;
+
+      p {
+        font-size: 13px;
+        color: #777777;
+      }
+    }
   }
 }
 

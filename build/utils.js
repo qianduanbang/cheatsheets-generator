@@ -1,3 +1,4 @@
+var fs = require('fs')
 var path = require('path')
 var config = require('../config')
 var ExtractTextPlugin = require('extract-text-webpack-plugin')
@@ -68,4 +69,25 @@ exports.styleLoaders = function (options) {
     })
   }
   return output
+}
+
+exports.param = (params, key, default_value=false) => {
+  var keys = key.split('.');
+  var length = keys.length;
+
+  for (var i = 0; i < length; i++) {
+    var _params = params[keys[i]];
+    if (_params == undefined) {
+      return default_value;
+    }
+    params = _params;
+  }
+
+  return params;
+}
+
+exports.isDirectory = (path) => {
+  if (!fs.existsSync(path)) return false;
+  if (!fs.statSync(path).isDirectory())  return false;
+  return true;
 }

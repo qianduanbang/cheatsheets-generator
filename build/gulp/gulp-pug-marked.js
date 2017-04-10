@@ -88,7 +88,7 @@ function gulpPugMarked(options) {
         opts.pug.file = file.path.split(file.base)[1];
         opts.pug.file = opts.pug.file.substring(0, opts.pug.file.lastIndexOf('.md'));
         opts.pug.title = opts.pug.title || path.basename(file.path, '.md');
-        if (opts.record && records[opts.pug.title] === undefined) {
+        if (opts.record) {
           records[opts.pug.file] = {
             title: opts.pug.title,
             description: opts.pug.description || ''

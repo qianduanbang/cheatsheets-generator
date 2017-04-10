@@ -1,5 +1,6 @@
 const gulp = require('gulp');
 const path = require('path');
+const fs = require('fs');
 const execsync = require('child_process').execSync;
 const exec = require('child_process').exec;
 // deal css
@@ -7,6 +8,8 @@ const postcss = require('gulp-postcss');
 const precss = require('precss');
 const autoprefixer = require('autoprefixer');
 const postcssSassyMixins = require('postcss-sassy-mixins');
+const utils = require('./utils')
+const package = require('../package.json');
 
 // generate hash and replace file by hash
 const rev = require('gulp-rev');
@@ -36,9 +39,17 @@ paths.srcIndex = path.resolve(paths.src, '../index');
 paths.srcAssets = paths.src + '/static';
 paths.distAssets = paths.dist + '/static';
 paths.manifest = paths.distAssets + '/manifest.json';
+paths.srcMd =  paths.root + '/sheets-md';
+
+var _srcMd = utils.param(package, 'config.md');
+if (_srcMd) {
+ _srcMd = path.resolve(paths.root, _srcMd);
+  paths.srcMd = utils.isDirectory(_srcMd) ? _srcMd : paths.srcMd;
+}
+
 var globs = {
   font: paths.srcAssets + '/font/**/*',
-  md: paths.root + '/sheets-md/**/*.md',
+  md: paths.srcMd + '/**/*.md',
   srcIndex: paths.srcIndex + '/**/*',
   scss: paths.srcAssets + '/**/*.scss',
   pug: paths.src + '/template/**/*.pug'

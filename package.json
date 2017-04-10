@@ -11,6 +11,15 @@
     "build": "gulp --gulpfile build/gulpfile.js build",
     "preview": "gulp --gulpfile build/gulpfile.js preview"
   },
+  "config": {
+    "md": "../simple-cheatsheets/src",
+    "gh-pages": {
+      "git": "/Users/Luo/Documents/git/simple-cheatsheets.git",
+      "message": "cheat sheets updated",
+      "user": "MwumLi",
+      "email": "mwumli@hotmail.com"
+    }
+  },
   "license": "ISC",
   "dependencies": {
     "vue": "^2.2.2",
@@ -37,6 +46,7 @@
     "file-loader": "^0.10.0",
     "friendly-errors-webpack-plugin": "^1.1.3",
     "function-bind": "^1.1.0",
+    "gh-pages": "^0.12.0",
     "gulp": "^3.9.1",
     "gulp-markdown": "^1.2.0",
     "gulp-postcss": "^6.3.0",

@@ -9,7 +9,7 @@
         autofocus
         autocomplete="off"
         placeholder="What you want view ..."
-        @keyup.enter="search">
+        v-model="query">
     </header>
     <donate></donate>
   </section>
@@ -30,7 +30,8 @@ export default {
   data () {
     return {
       title: 'cheat sheets',
-      tempCmds: []
+      tempCmds: [],
+      query: ''
     }
   },
   methods: {
@@ -45,7 +46,12 @@ export default {
   computed: {
     cmds: {
       get () {
-        return this.tempCmds || [];
+        var _cmds = this.tempCmds || []
+        var _query = this.query.trim()
+        _cmds = _cmds.filter(item => {
+          return item.title.includes(_query)
+        })
+        return _cmds;
       },
       set (cmds) {
         var _cmds = [];
