@@ -41,8 +41,8 @@ var blockHeadingGenerator = (opts, heading) => {
 var paragraphGenerator = (opts, paragraph) => {
   var hArr = opts._markedBlockHeadingArr;
   return (text) => {
-    if (hArr.length == 0) {
-      opts.pug.description = text;
+    if (hArr.length == 0 && !opts.pug.description) {
+      opts.pug.description = text.trim();
     }
     return paragraph(text);
   }
