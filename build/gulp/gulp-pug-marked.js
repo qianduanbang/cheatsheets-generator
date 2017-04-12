@@ -86,6 +86,9 @@ function gulpPugMarked(options) {
 
         opts.pug[opts.pug.renderField] = markedHtml;
         opts.pug.file = file.path.split(file.base)[1];
+        if (opts.pug.http) {
+          opts.pug.mdUrl = opts.pug.http[opts.pug.http.length-1] == '/'? opts.pug.http + opts.pug.file : opts.pug.http + '/' + opts.pug.file;
+        }
         opts.pug.file = opts.pug.file.substring(0, opts.pug.file.lastIndexOf('.md'));
         opts.pug.title = opts.pug.title || path.basename(file.path, '.md');
         if (opts.record) {

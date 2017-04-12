@@ -12,7 +12,10 @@
     "preview": "gulp --gulpfile build/gulpfile.js preview"
   },
   "config": {
-    "md": "../simple-cheatsheets/src",
+    "md": {
+      "local": "../simple-cheatsheets/src",
+      "http": "https://github.com/MwumLi/simple-cheatsheets/blob/master/src/"
+    },
     "gh-pages": {
       "git": "git@github.com:MwumLi/simple-cheatsheets.git",
       "message": "cheat sheets updated",

@@ -8,4 +8,10 @@ html(lang="en")
     meta(name="description" content=description)
     title #{title} - cheatsheet
     link(rel='stylesheet', href='/static/css/cards.css')
-  body !{htmlContent}
+  body
+    div.page-header
+      a(href="/",class="btn pull-left toggle-search",title="search")
+        i(class="fa fa-search")
+      if http
+        a(href=mdUrl,class="btn pull-left edit",target="_blank") 在 Github 上编辑此页
+    div.page-wrapper !{htmlContent}

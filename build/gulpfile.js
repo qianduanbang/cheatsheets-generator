@@ -41,7 +41,7 @@ paths.distAssets = paths.dist + '/static';
 paths.manifest = paths.distAssets + '/manifest.json';
 paths.srcMd =  paths.root + '/sheets-md';
 
-var _srcMd = utils.param(package, 'config.md');
+var _srcMd = utils.param(package, 'config.md.local');
 if (_srcMd) {
  _srcMd = path.resolve(paths.root, _srcMd);
   paths.srcMd = utils.isDirectory(_srcMd) ? _srcMd : paths.srcMd;
@@ -97,6 +97,7 @@ gulp.task('markdown', ['style'], () => {
       pug: {
         renderField: 'htmlContent',
         pretty: true,
+        http: utils.param(package, 'config.md.http', '')
       },
       markedBlockHeading: true,
       marked: {

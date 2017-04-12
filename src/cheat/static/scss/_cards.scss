@@ -7,6 +7,16 @@
 			font-style:normal;
 }
 
+@font-face {
+    font-family: 'FontAwesome';
+    src: url('../font/fontawesome/fontawesome-webfont.eot?v=4.1.0');
+    src: url('../font/fontawesome/fontawesome-webfont.eot?#iefix&v=4.1.0') format('embedded-opentype'),
+         url('../font/fontawesome/fontawesome-webfont.woff?v=4.1.0') format('woff'),
+         url('../font/fontawesome/fontawesome-webfont.ttf?v=4.1.0') format('truetype'),
+         url('../font/fontawesome/fontawesome-webfont.svg?v=4.1.0#fontawesomeregular') format('svg');
+    font-weight: normal;
+    font-style: normal
+}
 $base03:    #002b36;
 $base02:    #073642;
 $base01:    #586e75;
@@ -36,16 +46,75 @@ $headerFont: "web-pro-h", "Open Sans";
 }
 
 body {
-  padding: 25px 36px;
+  margin-top: 0;
+  // padding: 25px 36px;
+  padding-top: 0;
+  margin: 0;
+  padding:0;
   font-family: "Helvetica Neue", Arial, sans-serif;
   background-color: $base3;
   color: $base00;
 
+}
+
+.page-header {
+  font-family: "Open Sans","Clear Sans","Helvetica Neue",Helvetica,Arial,sans-serif;
+  overflow: visible;
+  height: 50px;
+  padding: 0 36px;
+  z-index: 2;
+  font-size: .85em;
+  color: #7e888b;
+  background: transparent;
+  background-color: $base2;
+  @media (max-width: 767px) {
+    padding: 0 10px;
+  }
+
+  .btn {
+    display: block;
+    height: 50px;
+    padding: 0 15px;
+    border-bottom: 0;
+    color: #ccc;
+    text-transform: uppercase;
+    line-height: 50px;
+    -webkit-box-shadow: none!important;
+    box-shadow: none!important;
+    position: relative;
+    font-size: 14px; 
+  }
+
+  .edit {
+    color: $yellow;
+    text-decoration: none;
+  }
+}
+
+.pull-left {
+  float: left;
+}
+
+.fa {
+  display: inline-block;
+  font-family: FontAwesome;
+  font-style: normal;
+  font-weight: normal;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  color: red;
+}
+
+.fa-search:before {
+    content: "\f002";
+}
+
+.page-wrapper {
+  padding: 25px 36px;
   @media (max-width: 767px) {
     padding: 25px 10px;
   }
 }
-
 p, blockquote, ul, ol, dl, li, table, pre {
   margin: 15px 0;
 }
