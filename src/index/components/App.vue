@@ -49,7 +49,7 @@ export default {
         var _cmds = this.tempCmds || []
         var _queryArr = this.query.trim().split(' ');
         _cmds = _cmds.filter(item => {
-          return _queryArr.some(_query => item.title.includes(_query))
+          return _queryArr.some(_query => item.title.indexOf(_query) > -1)
         })
         return _cmds;
       },
