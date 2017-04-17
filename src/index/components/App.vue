@@ -8,7 +8,7 @@
       <input class="search-cmd"
         autofocus
         autocomplete="off"
-        placeholder="What you want view ..."
+        placeholder="what you want to view ..."
         v-model="query">
     </header>
     <donate></donate>

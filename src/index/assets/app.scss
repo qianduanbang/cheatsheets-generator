@@ -26,7 +26,7 @@ body {
 
 .header {
 	background: #fff;
-  min-width: 230px;
+  min-width: 320px;
   max-width: 550px;
 	margin: 130px auto 40px auto;
 	position: relative;
@@ -37,13 +37,22 @@ body {
     position: absolute;
     top: -155px;
     width: 100%;
-    min-width: 550px;
     font-size: 100px;
     font-weight: 100;
     text-align: center;
     color: rgba(175, 47, 47, 0.15);
     text-transform: capitalize;
     text-rendering: optimizeLegibility;
+    @media (min-width: 480px) and (max-width: 640px) {
+      font-size: 70px;
+      top: -140px;
+    }
+
+    @media (min-width: 320px) and (max-width: 479px) {
+      font-size: 60px;
+      top: -130px;
+    }
+
   }
 
   .search-cmd {
@@ -78,6 +87,10 @@ body {
   position: relative;
   z-index: 2;
   border-top: 1px solid #e6e6e6;
+
+  @media (max-width: 640px) {
+    width: 100%;
+  }
 }
 
 .footer {
@@ -165,12 +178,6 @@ body {
   }
 }
 
-/*
-	Hack to remove background from Mobile Safari.
-	Can't use it globally since it destroys checkboxes in Firefox
-*/
-@media screen and (-webkit-min-device-pixel-ratio:0) {
-}
 
 @media (max-width: 430px) {
 	.footer {
