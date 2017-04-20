@@ -16,13 +16,13 @@
 
 ## 命令
 
-* 运行(开发):  
-  默认打开 <http://localhost:3000> 
-	使用了 [browsersync](http://www.browsersync.cn/), 方便多平台调试  
+运行(开发):  
+默认打开 <http://localhost:3000> 
+使用了 [browsersync](http://www.browsersync.cn/), 方便多平台调试  
 
-		make dev
-		或
-		npm run dev
+	make dev
+	或
+	npm run dev
 
 构建:  
 
